@@ -60,6 +60,12 @@ export function Contact() {
       return;
     }
 
+    if (!supabase) {
+      setStatus('error');
+      setError('The contact form is not configured yet. Please use the email link to get in touch.');
+      return;
+    }
+
     setStatus('submitting');
     setError('');
 

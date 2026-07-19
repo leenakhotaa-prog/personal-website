@@ -141,12 +141,45 @@ export const projects: ProjectPlaceholder[] = [
   },
 ];
 
+export type JobOpportunity = {
+  title: string;
+  type: string;
+  focus: string;
+  description: string;
+  skills: string[];
+};
+
+export const jobOpportunities: JobOpportunity[] = [
+  {
+    title: 'Business Analyst Intern',
+    type: 'Internship',
+    focus: 'Business analysis',
+    description: 'Support requirement gathering, process mapping, research, and stakeholder communication.',
+    skills: ['Requirements', 'Process mapping', 'Excel'],
+  },
+  {
+    title: 'Junior Data Analyst',
+    type: 'Entry level',
+    focus: 'Analytics',
+    description: 'Turn data into clear reports and practical insights that help teams make decisions.',
+    skills: ['Excel', 'SQL', 'Power BI'],
+  },
+  {
+    title: 'Business Intelligence Intern',
+    type: 'Internship',
+    focus: 'Reporting & dashboards',
+    description: 'Help develop dashboards, validate data, and communicate performance trends.',
+    skills: ['Power BI', 'Data visualization', 'Communication'],
+  },
+];
+
 export const navLinks = [
   { id: 'home', label: 'Home' },
   { id: 'about', label: 'About' },
   { id: 'skills', label: 'Skills' },
   { id: 'hobbies', label: 'Interests' },
   { id: 'projects', label: 'Projects' },
+  { id: 'opportunities', label: 'Opportunities' },
   { id: 'contact', label: 'Contact' },
 ];
 
