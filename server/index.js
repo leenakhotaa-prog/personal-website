@@ -1,9 +1,13 @@
 import 'dotenv/config';
 import express from 'express';
 import mongoose from 'mongoose';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 const app = express();
 const port = process.env.PORT || 5000;
+const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const distPath = path.join(projectRoot, 'dist');
 
 const hobbySchema = new mongoose.Schema(
   {
@@ -50,6 +54,12 @@ app.post('/api/hobbies', async (request, response, next) => {
   }
 });
 
+app.use(express.static(distPath));
+
+app.get('/{*splat}', (_request, response) => {
+  response.sendFile(path.join(distPath, 'index.html'));
+});
+
 app.use((error, _request, response, _next) => {
   if (error instanceof mongoose.Error.ValidationError) {
     return response.status(400).json({ message: error.message });
@@ -73,8 +83,8 @@ async function start() {
     console.warn('MONGODB_URI is not set. The app will use its built-in hobby entries.');
   }
 
-  app.listen(port, '127.0.0.1', () => {
-    console.log(`Hobbies API listening on http://127.0.0.1:${port}`);
+  app.listen(port, '0.0.0.0', () => {
+    console.log(`Website and API listening on port ${port}`);
   });
 }
 

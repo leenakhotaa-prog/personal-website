@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: personal-website
+    runtime: node
+    buildCommand: npm ci && npm run build
+    startCommand: npm start
+    envVars:
+      - key: MONGODB_URI
+        sync: false
